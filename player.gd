@@ -1,7 +1,7 @@
 class_name Player extends CharacterBody3D
 
 @export var move_speed: float = 5.0
-@export var acceleration: float = 100.0
+@export var acceleration: float = 25
 
 var forward_direction: Vector3 = Vector3.FORWARD
 var right_direction: Vector3 = Vector3.RIGHT

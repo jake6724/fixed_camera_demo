@@ -1,4 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3qc3ip26ifp1"]
+[gd_scene load_steps=7 format=3 uid="uid://d3qc3ip26ifp1"]
+
+[ext_resource type="Script" uid="uid://bb6iy51ioyo7f" path="res://npc.gd" id="1_twre2"]
+[ext_resource type="Texture2D" uid="uid://x6db7feyq0k7" path="res://assets/KeyboardInputs/Vector/keyboard_e_outline.svg" id="2_ll5ud"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ss65"]
 albedo_color = Color(0.8757068, 0.01480319, 7.70092e-07, 1)
@@ -12,7 +15,14 @@ height = 1.7
 radius = 0.4
 height = 1.7
 
-[node name="NPC" type="Node3D"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1ss65"]
+height = 1.4041748
+radius = 3.104004
+
+[node name="NPC" type="Node3D" node_paths=PackedStringArray("area_talk", "hint_talk")]
+script = ExtResource("1_twre2")
+area_talk = NodePath("AreaTalk")
+hint_talk = NodePath("HintTalk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_twre2")
@@ -21,3 +31,16 @@ mesh = SubResource("CapsuleMesh_twre2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("CapsuleShape3D_1ss65")
+
+[node name="AreaTalk" type="Area3D" parent="."]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaTalk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.010349214, 0)
+shape = SubResource("CylinderShape3D_1ss65")
+debug_color = Color(0, 0.6313726, 0.45490196, 1)
+
+[node name="HintTalk" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009495318, 1.498817, 0.39263654)
+billboard = 1
+texture = ExtResource("2_ll5ud")
